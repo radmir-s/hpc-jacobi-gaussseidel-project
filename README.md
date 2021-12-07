@@ -1,4 +1,4 @@
-# HPC project on Jacobi and Gauss-Seidel methods
+## HPC project on Jacobi and Gauss-Seidel methods
 
 platfrom: Stampede2 <br/>
 programming language: C/C++ <br/>
