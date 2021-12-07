@@ -1,6 +1,6 @@
 # HPC project on Jacobi and Gauss-Seidel methods
 
-platfrom: Stampede2
+platfrom: Stampede2\n
 programming language: C/C++
 parallel computing instrument: OpenMP
 
