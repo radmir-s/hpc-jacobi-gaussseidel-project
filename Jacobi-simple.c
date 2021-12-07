@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <cmath>
+#include <math.h>
 
 #ifndef N
 #define N 32
@@ -43,7 +43,7 @@ void init_arrays()
 
 int main() {
 	int i, j;
-	double res, r;
+	double res, r, sum;
 	
 	// Initiate arrays
 	init_arrays();
@@ -58,10 +58,10 @@ int main() {
 			sum = 0;
 			for (j = 0; j < N; j++) {
 				if (i != j) {
-					sum += a[i][j]*x0[j]
+					sum += A[i][j]*x0[j];
 				}
 			}
-		x1[i] = (b[i]-sum)/a[i][i]
+		x1[i] = (b[i]-sum)/A[i][i];
 		}
 	
 	for (i = 0; i < N; i++) {
@@ -70,14 +70,14 @@ int main() {
 	
 	res = 0;
 	for (i = 0; i < N; i++) {
-			r = b[i]
+			r = b[i];
 			for (j = 0; j< N; j++) {
-				r -= a[i][j]*x1[j]
+				r -= A[i][j]*x1[j];
 			}
-		res += r*r
+		res += r*r;
 	}	
-	res = sqrt(res/N)
+	res = sqrt(res/N);
 	
-	} while(res>1e-6)
+	} while(res>1e-6);
 	
 }
