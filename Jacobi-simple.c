@@ -22,7 +22,8 @@ void init_arrays()
 	// Matrix A
     for (i = 0; i < N; i++) {
         for (j = 0; j < N; j++) {
-            A[i][j] = N/((i-j)*(i-j)+1);
+			if (i==j) A[i][j] = N;
+			else A[i][j] = (i+j)/N;
         }
     }
 	
@@ -45,6 +46,8 @@ int main() {
 	int i, j;
 	double res, r, sum;
 	
+	printf("Array size is %d\n", N);
+	
 	// Initiate arrays
 	init_arrays();
 	
@@ -53,6 +56,7 @@ int main() {
 		x0[i] = 0;
 	}	
 	
+	int iter = 0;
 	do {
 		for (i = 0; i < N; i++) {
 			sum = 0;
@@ -77,7 +81,8 @@ int main() {
 		res += r*r;
 	}	
 	res = sqrt(res/N);
-	
+	iter += 1;
+	printf("Iteration number is %d, resudial is %lf\n", iter, res);
 	} while(res>1e-6);
 	
 }
