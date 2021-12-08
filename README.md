@@ -5,8 +5,7 @@ Aim of the project is to find out a better way of implementing parallel computin
 ### Platfrom 
 Cluster: Stampede2 \
 Programming language: C/C++ \
-Parallel computing: OpenMP \
-
+Parallel computing: OpenMP 
 ### Details
 Array size: 32 128 512 2048 8192 \
 Number of threads: 1 2 4 16 48 96 \
