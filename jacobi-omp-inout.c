@@ -4,12 +4,24 @@
 #include <time.h>
 #include <omp.h>
 
-#ifndef INNER
-#define INNER 1
+#ifndef INNER1
+#define INNER1 1
 #endif
 
-#ifndef OUTER
-#define OUTER 1
+#ifndef OUTER1
+#define OUTER1 1
+#endif
+
+#ifndef INNER2
+#define INNER2 1
+#endif
+
+#ifndef OUTER2
+#define OUTER2 1
+#endif
+
+#ifndef LOOP
+#define LOOP 1
 #endif
 
 #ifndef N
@@ -83,12 +95,12 @@ int main()
 	int iter = 0;
 	do {
 
-		#pragma omp parallel for private(i,j,sum) num_threads(OUTER) 
+		#pragma omp parallel for private(i,j,sum) num_threads(OUTER1) 
 		for (i = 0; i < N; i++) 
 		{
 			sum = 0;
 
-			#pragma omp parallel for reduction(+:sum) num_threads(INNER) 
+			#pragma omp parallel for reduction(+:sum) num_threads(INNER1) 
 			for (j = 0; j < N; j++) 
 			{
 				if (i != j) 
@@ -99,7 +111,7 @@ int main()
 		x1[i] = (b[i]-sum)/A[i][i];
 		}
 	
-	#pragma omp parallel for private(i) num_threads(OUTER) 
+	#pragma omp parallel for private(i) num_threads(LOOP) 
 	for (i = 0; i < N; i++) 
 	{
 		x0[i] = x1[i];
@@ -107,12 +119,12 @@ int main()
 	
 	res = 0;
 
-	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER) 
+	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER2) 
 	for (i = 0; i < N; i++) 
 	{
 			r = b[i];
 
-			#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER) 
+			#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER2) 
 			for (j = 0; j< N; j++) 
 			{
 				r -= A[i][j]*x1[j];
@@ -122,11 +134,11 @@ int main()
 
 	res = sqrt(res/N);
 	iter += 1;
-	printf("Iteration number: %d , resudial: %lf\n", iter, res);
+	//printf("Iteration number: %d , resudial: %lf\n", iter, res);
 	} while(res>1e-6);
 	
 	// end timer
 	end = clock();
 	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Time used: %lf ms\nOuter loops: %d\nInner loops: %d", cpu_time_used, OUTER, INNER);
+	printf("Time = %lf ms\nOuter1 = %d\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d", cpu_time_used, OUTER1, INNER1, LOOP, OUTER2, INNER2);
 }
