@@ -78,21 +78,22 @@ int main()
 	int iter = 0;
 	do {
 
-		#pragma omp parallel for private(i,j,sum) num_threads(OUTER1) 
 		for (i = 0; i < N; i++) 
 		{
 			sum = 0;
 
-			//?
-			for (j = 0; j < i; j++) 
+			#pragma omp parallel for private(j) reduction(+:sum) num_threads(INNER1)
+			for (j = 0; j < N; j++) 
 			{
-				sum += A[i][j]*x1[j];
-			}
+				if (j<i)
+				{
+					sum += A[i][j]*x1[j];
+				}
+				else
+				{
+					sum += A[i][j]*x0[j];
+				}
 
-			//?
-            for (j = i + 1; j < N; j++) 
-			{
-				sum += A[i][j]*x0[j];
 			}
 
 		    x1[i] = (b[i]-sum) / A[i][i];
