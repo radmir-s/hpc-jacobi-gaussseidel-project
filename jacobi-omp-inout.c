@@ -4,8 +4,16 @@
 #include <time.h>
 #include <omp.h>
 
+#ifndef INNER
+#define INNER 1
+#endif
+
+#ifndef OUTER
+#define OUTER 1
+#endif
+
 #ifndef N
-#define N 32
+#define N 128
 #endif
 
 double A[N][N];
@@ -75,11 +83,12 @@ int main()
 	int iter = 0;
 	do {
 
-
+		#pragma omp parallel for private(i,j,sum) num_threads(OUTER*INNER) 
 		for (i = 0; i < N; i++) 
 		{
 			sum = 0;
 
+			#pragma omp parallel for reduction(+:sum) num_threads(INNER) 
 			for (j = 0; j < N; j++) 
 			{
 				if (i != j) 
@@ -90,15 +99,20 @@ int main()
 		x1[i] = (b[i]-sum)/A[i][i];
 		}
 	
+	#pragma omp parallel for private(i) num_threads(OUTER) 
 	for (i = 0; i < N; i++) 
 	{
 		x0[i] = x1[i];
 	}	
 	
 	res = 0;
+
+	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER*INNER) 
 	for (i = 0; i < N; i++) 
 	{
 			r = b[i];
+
+			#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER) 
 			for (j = 0; j< N; j++) 
 			{
 				r -= A[i][j]*x1[j];
@@ -114,5 +128,5 @@ int main()
 	// end timer
 	end = clock();
 	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Time used: %lf ms", cpu_time_used);
+	printf("Time used: %lf ms\nOuter loops: %d\nInner loops: %d", cpu_time_used, OUTER, INNER);
 }
