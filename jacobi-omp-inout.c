@@ -66,7 +66,7 @@ int main()
 	clock_t start, end;
 	double cpu_time_used;
 
-	printf("Array size is %d\n", N);
+	printf("Array size: %d\n", N);
 	
 	// Initiate arrays
 	init_arrays();
@@ -83,7 +83,7 @@ int main()
 	int iter = 0;
 	do {
 
-		#pragma omp parallel for private(i,j,sum) num_threads(OUTER*INNER) 
+		#pragma omp parallel for private(i,j,sum) num_threads(OUTER) 
 		for (i = 0; i < N; i++) 
 		{
 			sum = 0;
@@ -107,7 +107,7 @@ int main()
 	
 	res = 0;
 
-	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER*INNER) 
+	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER) 
 	for (i = 0; i < N; i++) 
 	{
 			r = b[i];
@@ -122,7 +122,7 @@ int main()
 
 	res = sqrt(res/N);
 	iter += 1;
-	printf("Iteration number is %d, resudial is %lf\n", iter, res);
+	printf("Iteration number: %d , resudial: %lf\n", iter, res);
 	} while(res>1e-6);
 	
 	// end timer
