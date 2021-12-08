@@ -4,6 +4,8 @@
 #include <time.h>
 #include <omp.h>
 
+// Seems like the nested loops of this code cannot be collapsed...
+
 #ifndef LOOP
 #define LOOP 1
 #endif
