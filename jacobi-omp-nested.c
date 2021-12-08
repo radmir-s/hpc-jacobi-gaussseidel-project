@@ -90,6 +90,7 @@ int main()
 	start = clock();
 
 	// Initial guess x0 as zero vector
+	#pragma omp parallel for private(i) num_threads(LOOP) 
 	for (i = 0; i < N; i++) 
 	{
 		x0[i] = 0;
@@ -125,13 +126,13 @@ int main()
 	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER2) 
 	for (i = 0; i < N; i++) 
 	{
-			r = b[i];
+		r = b[i];
 
-			#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER2) 
-			for (j = 0; j< N; j++) 
-			{
-				r -= A[i][j]*x1[j];
-			}
+		#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER2) 
+		for (j = 0; j< N; j++) 
+		{
+			r -= A[i][j]*x1[j];
+		}
 		res += r*r;
 	}	
 
