@@ -4,10 +4,25 @@
 #include <time.h>
 #include <omp.h>
 
+#ifndef INNER1
+#define INNER1 1
+#endif
+
+#ifndef INNER2
+#define INNER2 1
+#endif
+
+#ifndef OUTER2
+#define OUTER2 1
+#endif
+
+#ifndef LOOP
+#define LOOP 1
+#endif
+
 #ifndef N
 #define N 64
 #endif
-
 
 double A[N][N];
 double b[N];
@@ -129,12 +144,12 @@ int main()
 	// end timer
 	end = clock();
 	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Time = %lf ms\nOuter1 = %d\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d", cpu_time_used, OUTER1, INNER1, LOOP, OUTER2, INNER2);
+	printf("Time = %lf ms\nOuter1 = %d\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d", cpu_time_used, INNER1, LOOP, OUTER2, INNER2);
 
 
-	for (size_t i = 0; i < N; i++)
+	for (size_t i = 0; i < 10; i++)
 	{
-		printf("-- %lf", x0[i]);
+		printf("%lf ", x0[i]);
 	}
 	
 	
