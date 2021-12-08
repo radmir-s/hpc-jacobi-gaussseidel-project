@@ -72,6 +72,9 @@ void init_arrays()
 
 int main() 
 {
+	// Enable nested loops
+	omp_set_nested(1);
+
 	int i, j;
 	double res, r, sum;
 	
