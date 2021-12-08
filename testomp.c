@@ -6,13 +6,15 @@
 
 void main() {
     int thread, i, j;
+    printf("----------------PARALLEL---------------\n");
+
     #pragma omp parallel num_threads(2) 
     {
         thread = omp_get_thread_num();
         printf("Thread # %d\n", thread);
     }
 
-    printf("-------------------------------\n");
+    printf("----------------LOOP---------------\n");
 
     #pragma omp parallel for private(i) num_threads(2)
     for (int i=0; i<10; i++)
@@ -21,7 +23,7 @@ void main() {
         printf("Loop # %d, Thread # %d\n", i, thread);
     }
     
-    printf("-------------------------------\n");
+    printf("----------------REDUCTION---------------\n");
 
     int sum = 0;
     #pragma omp parallel for reduction(+:sum) private(i) num_threads(2)
@@ -32,12 +34,11 @@ void main() {
     
     printf("Sum is %d\n", sum);
 
-    printf("-------------------------------\n");
+    printf("----------------COLLAPSE---------------\n");
 
     #pragma omp parallel for private(i,j) collapse(2) num_threads(2)
     for (i=0; i<10; i++)
     {
-        
         for (j=0; j<10; j++)
         {
             thread = omp_get_thread_num();
