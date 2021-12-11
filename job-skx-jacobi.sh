@@ -16,6 +16,6 @@ gcc -lm -fopenmp -DOUTER1=$outer1 -DINNER1=$inner1  \
 -DOUTER2=$outer2 -DINNER2=$inner2 -DLOOP=$loop -DN=$size \
 jacobi-omp-nested.c -o jacobi-omp-nested.exe
 
-./jacobi-omp-nested > res-jacobi-$size-$inner1-$outer1-$loop-$inner2-$outer2.txt
+./jacobi-omp-nested.exe > results/jacobi-$size-$inner1-$outer1-$loop-$inner2-$outer2.txt
 
 done; done; done; done; done; done;
