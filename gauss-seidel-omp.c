@@ -147,7 +147,7 @@ int main()
 	printf("Time = %lf ms\nOuter1 = %d\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d\n", cpu_time_used, INNER1, LOOP, OUTER2, INNER2);
 
 
-	for (size_t i = 0; i < 10; i++)
+	for (i = 0; i < 10; i++)
 	{
 		printf("%lf ", x0[i]);
 	}
