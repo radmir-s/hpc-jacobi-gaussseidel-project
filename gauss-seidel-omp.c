@@ -62,7 +62,7 @@ void init_arrays()
 			}
 	}
 	
-}
+} 
 
 int main() 
 {
