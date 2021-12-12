@@ -72,7 +72,7 @@ int main()
 	int i, j;
 	double res, r, sum;
 	
-	clock_t start, end;
+	double start, end;
 	double cpu_time_used;
 	
 	printf("Array size is %d\n", N);
@@ -81,7 +81,7 @@ int main()
 	init_arrays();
 	
 	// start timer
-	start = clock();
+	start = omp_get_wtime();	
 
 	// Initial guess x0 as zero vector
 	#pragma omp parallel for private(i) num_threads(LOOP) 
@@ -142,8 +142,8 @@ int main()
 	} while(res>1e-6);
 
 	// end timer
-	end = clock();
-	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
+	end = omp_get_wtime();
+	cpu_time_used = end-start;
 	printf("Time = %lf ms\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d\n", cpu_time_used, INNER1, LOOP, OUTER2, INNER2);
 
 

@@ -70,7 +70,7 @@ int main()
 	int i, j;
 	double res, r, sum;
 	
-	clock_t start, end;
+	double start, end;
 	double cpu_time_used;
 
 	printf("Array size: %d\n", N);
