@@ -31,7 +31,6 @@ pprof > results/gs-l2-$size-$inner1-$inner2-$outer2-$loop.txt
 export TAU_METRICS="PAPI_L3_TCM"
 pprof > results/gs-l3-$size-$inner1-$inner2-$outer2-$loop.txt
 
-
 fi
 
 done; done; done; done; done;
