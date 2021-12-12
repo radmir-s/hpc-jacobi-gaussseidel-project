@@ -4,20 +4,12 @@
 #include <time.h>
 #include <omp.h>
 
-#ifndef INNER1
-#define INNER1 1
+#ifndef INNER
+#define INNER 1
 #endif
 
-#ifndef OUTER1
-#define OUTER1 1
-#endif
-
-#ifndef INNER2
-#define INNER2 1
-#endif
-
-#ifndef OUTER2
-#define OUTER2 1
+#ifndef OUTER
+#define OUTER 1
 #endif
 
 #ifndef LOOP
@@ -99,12 +91,12 @@ int main()
 	int iter = 0;
 	do {
 
-		#pragma omp parallel for private(i,j,sum) num_threads(OUTER1) 
+		#pragma omp parallel for private(i,j,sum) num_threads(OUTER) 
 		for (i = 0; i < N; i++) 
 		{
 			sum = 0;
 
-			#pragma omp parallel for reduction(+:sum) num_threads(INNER1) 
+			#pragma omp parallel for reduction(+:sum) num_threads(INNER) 
 			for (j = 0; j < N; j++) 
 			{
 				if (i != j) 
@@ -123,12 +115,12 @@ int main()
 	
 	res = 0;
 
-	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER2) 
+	#pragma omp parallel for private(i,j,r) reduction(+:res) num_threads(OUTER) 
 	for (i = 0; i < N; i++) 
 	{
 		r = b[i];
 
-		#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER2) 
+		#pragma omp parallel for private(j) reduction(-:r) num_threads(INNER) 
 		for (j = 0; j< N; j++) 
 		{
 			r -= A[i][j]*x1[j];

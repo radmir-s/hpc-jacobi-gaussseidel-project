@@ -6,16 +6,18 @@
 
 
 for size in 32 128 512 2048 8192; do
-for inner1 in 1 2; do
-for outer1 in 1 2; do
-for loop in 1 2; do
-for inner2 in 1 2; do
-for outer2 in 1 2; do
+for inner in 1 2 4 8 12; do
+for outer in 1 2 4 8 12; do
+for loop in 1; do
 
-gcc -lm -fopenmp -DOUTER1=$outer1 -DINNER1=$inner1  \
--DOUTER2=$outer2 -DINNER2=$inner2 -DLOOP=$loop -DN=$size \
+if ( $inner != 12 && $outer != 12 ); then
+
+gcc -lm -fopenmp -DOUTER=$outer -DINNER=$inner  \
+-DLOOP=$loop -DN=$size \
 jacobi-omp-nested.c -o jacobi-omp-nested.exe
 
-./jacobi-omp-nested.exe > results/jacobi-$size-$inner1-$outer1-$loop-$inner2-$outer2.txt
+./jacobi-omp-nested.exe > results/jacobi-$size-$inner-$outer-$loop.txt
 
-done; done; done; done; done; done;
+fi
+
+done; done; done; done;
