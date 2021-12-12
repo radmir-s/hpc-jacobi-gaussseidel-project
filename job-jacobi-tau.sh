@@ -6,7 +6,7 @@
 
 module load tau/2.27.2
 export TAU_MAKEFILE=$TAU/Makefile.tau-intelomp-icpc-papi-ompt-pdt-openmp
-export TAU_METRICS="PAPI_L1_DCM"
+export TAU_METRICS="PAPI_L1_TCM"
 
 for size in 32 128 512 2048 8192; do
 for inner in 1 2 4 8 12; do
