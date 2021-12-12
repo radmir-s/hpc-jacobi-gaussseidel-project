@@ -11,7 +11,7 @@ export TAU_METRICS="PAPI_L1_TCM"
 for size in 32 128 512 2048 8192; do
 for inner in 1 2 4 8 12; do
 for outer in 1 2 4 8 12; do
-for loop in 1; do
+for loop in 1 2 4 8; do
 
 if [ $inner != 12 -o $outer != 12 ]; then
 

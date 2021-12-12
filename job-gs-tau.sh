@@ -12,7 +12,7 @@ for size in 32 128 512 2048 8192; do
 for inner1 in 1 2 4 8 16 48 96; do
 for inner2 in 1 2 4 8 12; do
 for outer2 in 1 2 4 8 12; do
-for loop in 1; do
+for loop in 1 2 4 8; do
 
 if [ $inner2 != 12 -o $outer2 != 12 ]; then
 
