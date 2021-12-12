@@ -144,7 +144,7 @@ int main()
 	// end timer
 	end = clock();
 	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Time = %lf ms\nOuter1 = %d\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d\n", cpu_time_used, INNER1, LOOP, OUTER2, INNER2);
+	printf("Time = %lf ms\nInner1 = %d\nLoop = %d\nOuter2 = %d\nInner2 = %d\n", cpu_time_used, INNER1, LOOP, OUTER2, INNER2);
 
 
 	for (i = 0; i < 10; i++)
