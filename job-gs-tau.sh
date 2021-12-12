@@ -26,7 +26,7 @@ export TAU_METRICS="PAPI_L1_TCM"
 pprof > results/gs-l1-$size-$inner1-$inner2-$outer2-$loop.txt
 
 export TAU_METRICS="PAPI_L2_TCM"
-pprof > results/jacobi-l2-$size-$inner1-$inner2-$outer2-$loop.txt
+pprof > results/gs-l2-$size-$inner1-$inner2-$outer2-$loop.txt
 
 export TAU_METRICS="PAPI_L3_TCM"
 pprof > results/gs-l3-$size-$inner1-$inner2-$outer2-$loop.txt
