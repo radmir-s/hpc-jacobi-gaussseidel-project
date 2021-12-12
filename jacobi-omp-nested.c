@@ -136,5 +136,5 @@ int main()
 	// end timer
 	end = omp_get_wtime();
 	cpu_time_used = end-start;
-	printf("Time = %lf ms\nOuter = %d\nInner = %d\nLoop = %d\n", cpu_time_used, OUTER, INNER, LOOP);
+	printf("Time = %lf\nOuter = %d\nInner = %d\nLoop = %d\n", cpu_time_used, OUTER, INNER, LOOP);
 }
