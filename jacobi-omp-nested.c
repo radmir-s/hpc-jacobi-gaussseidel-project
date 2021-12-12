@@ -32,7 +32,7 @@ double x1[N];
 
 void init_arrays()
 {
-    int i, j, k;
+    int i, j;
 	
 	// Matrix A
     for (i = 0; i < N; i++) 
@@ -136,5 +136,5 @@ int main()
 	// end timer
 	end = clock();
 	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
-	printf("Time = %lf ms\nOuter = %d\nInner = %d\nLoop = %d\", cpu_time_used, OUTER, INNER, LOOP);
+	printf("Time = %lf ms\nOuter = %d\nInner = %d\nLoop = %d\n", cpu_time_used, OUTER, INNER, LOOP);
 }
