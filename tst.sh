@@ -12,11 +12,7 @@ for loop in 1; do
 
 if [ $inner != 12 -o $outer != 12 ]; then
 
-gcc -lm -fopenmp -DOUTER=$outer -DINNER=$inner  \
--DLOOP=$loop -DN=$size \
-jacobi-omp-nested.c -o jacobi-omp-nested.exe
-
-./jacobi-omp-nested.exe > results/jacobi-$size-$inner-$outer-$loop.txt
+echo $inner$outer
 
 fi
 
