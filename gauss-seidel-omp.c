@@ -34,7 +34,7 @@ double x1[N];
 
 void init_arrays()
 {
-    int i, j, k;
+    int i, j;
 	
 	// Matrix A
     for (i = 0; i < N; i++) 
