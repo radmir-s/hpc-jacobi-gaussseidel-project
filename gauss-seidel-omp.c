@@ -31,7 +31,6 @@ double x[N];
 double x0[N];
 double x1[N];
 
-
 void init_arrays()
 {
     int i, j;
