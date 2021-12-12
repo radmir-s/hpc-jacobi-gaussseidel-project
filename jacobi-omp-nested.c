@@ -79,7 +79,7 @@ int main()
 	init_arrays();
 	
 	// start timer
-	start = clock();
+	start = omp_get_wtime();	
 
 	// Initial guess x0 as zero vector
 	#pragma omp parallel for private(i) num_threads(LOOP) 
@@ -134,7 +134,7 @@ int main()
 	} while(res>1e-6);
 	
 	// end timer
-	end = clock();
-	cpu_time_used = 1000*((double) (end - start)) / CLOCKS_PER_SEC;
+	end = omp_get_wtime();
+	cpu_time_used = end-start;
 	printf("Time = %lf ms\nOuter = %d\nInner = %d\nLoop = %d\n", cpu_time_used, OUTER, INNER, LOOP);
 }
