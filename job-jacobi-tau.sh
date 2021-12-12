@@ -21,13 +21,13 @@ jacobi-omp-nested.c -o jacobi-omp-nested.exe
 
 ./jacobi-omp-nested.exe > results/jacobi-$size-$inner-$outer-$loop.txt
 
-export TAU_METRICS="PAPI_L1_DCM"
+export TAU_METRICS="PAPI_L1_TCM"
 pprof > results/jacobi-l1-$size-$inner-$outer-$loop.txt
 
-export TAU_METRICS="PAPI_L2_DCM"
+export TAU_METRICS="PAPI_L2_TCM"
 pprof > results/jacobi-l2-$size-$inner-$outer-$loop.txt
 
-export TAU_METRICS="PAPI_L3_DCM"
+export TAU_METRICS="PAPI_L3_TCM"
 pprof > results/jacobi-l3-$size-$inner-$outer-$loop.txt
 
 fi
